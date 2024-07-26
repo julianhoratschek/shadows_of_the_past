@@ -1,92 +1,40 @@
-[gd_scene load_steps=10 format=3 uid="uid://chq6iwrtlbxhr"]
+[gd_scene load_steps=8 format=3 uid="uid://chq6iwrtlbxhr"]
 
-[ext_resource type="Texture2D" uid="uid://dc3bn122kw3pl" path="res://assets/sprites/tile_set.png" id="1_b2bhq"]
 [ext_resource type="PackedScene" uid="uid://b8b32v2hxn41a" path="res://prefabs/transmutation_circle.tscn" id="1_bgiia"]
+[ext_resource type="Script" path="res://scenes/shape_change_scene.gd" id="1_fi7ni"]
 [ext_resource type="PackedScene" uid="uid://ccqeis0ebvplt" path="res://prefabs/door.tscn" id="2_rlrwv"]
+[ext_resource type="TileSet" uid="uid://dnh07qaoym8xq" path="res://scenes/tileset.tres" id="2_t0n25"]
 [ext_resource type="PackedScene" uid="uid://cyrhvocyuyepp" path="res://prefabs/transmutable_object.tscn" id="3_btlve"]
 [ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="4_ws0pj"]
 [ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="5_tig1v"]
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rraot"]
-scenes/1/scene = ExtResource("1_bgiia")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_prege"]
-texture = ExtResource("1_b2bhq")
-texture_region_size = Vector2i(32, 32)
-0:0/next_alternative_id = 4
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -12, -16, -12, 16, -16, 16)
-0:0/1 = 1
-0:0/1/flip_h = true
-0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/1/physics_layer_0/angular_velocity = 0.0
-0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 12, -16, 12, 16, 16, 16)
-0:0/2 = 2
-0:0/2/flip_v = true
-0:0/2/transpose = true
-0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/2/physics_layer_0/angular_velocity = 0.0
-0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, 16, 12, -16, 12, -16, 16)
-0:0/3 = 3
-0:0/3/transpose = true
-0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/3/physics_layer_0/angular_velocity = 0.0
-0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 16, -12, -16, -12, -16, -16)
-0:1/next_alternative_id = 4
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 16, -12, -12, -12, -12, 16, -16, 16, -16, -16)
-0:1/1 = 1
-0:1/1/flip_h = true
-0:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/1/physics_layer_0/angular_velocity = 0.0
-0:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, -12, 12, -12, 12, 16, 16, 16, 16, -16)
-0:1/2 = 2
-0:1/2/flip_v = true
-0:1/2/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/2/physics_layer_0/angular_velocity = 0.0
-0:1/2/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -12, -16, -12, 12, 16, 12, 16, 16, -16, 16)
-0:1/3 = 3
-0:1/3/flip_h = true
-0:1/3/flip_v = true
-0:1/3/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/3/physics_layer_0/angular_velocity = 0.0
-0:1/3/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 12, -16, 12, 12, -16, 12, -16, 16, 16, 16)
-
-[sub_resource type="TileSet" id="TileSet_4wuye"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetScenesCollectionSource_rraot")
-sources/1 = SubResource("TileSetAtlasSource_prege")
-
 [node name="ShapeChangeScene" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_fi7ni")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_4wuye")
+tile_set = ExtResource("2_t0n25")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 1, 1, 1, 196608, 3, 1, 196608, 4, 1, 196608, 5, 1, 196608, 6, 1, 196608, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 7, 1, 196608, 8, 1, 196608, 9, 1, 196608, 10, 1, 196608, 11, 1, 196608, 12, 1, 196608, 13, 1, 196608, 14, 1, 196608, 15, 1, 196608, 16, 1, 196608, 65553, 1, 65536, 131089, 1, 65536, 196625, 1, 65536, 262161, 1, 65536, 327697, 1, 65536, 393233, 1, 65536, 458769, 1, 65536, 524305, 1, 65536, 589841, 1, 65536, 655377, 1, 65536, 720912, 1, 131072, 720911, 1, 131072, 720910, 1, 131072, 720909, 1, 131072, 720908, 1, 131072, 720907, 1, 131072, 720906, 1, 131072, 720905, 1, 131072, 720904, 1, 131072, 720903, 1, 131072, 720902, 1, 131072, 720901, 1, 131072, 720900, 1, 131072, 720899, 1, 131072, 720898, 1, 131072, 720897, 1, 131072, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 720913, 1, 196609, 17, 1, 65537, 720896, 1, 131073, 196618, 0, 65536, 589831, 0, 65536, 458765, 0, 65536, 2, 1, 196608)
+layer_0/tile_data = PackedInt32Array(0, 1, 1, 1, 1, 196608, 3, 1, 196608, 4, 1, 196608, 5, 1, 196608, 6, 1, 196608, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 7, 1, 196608, 8, 1, 196608, 9, 1, 196608, 10, 1, 196608, 11, 1, 196608, 12, 1, 196608, 13, 1, 196608, 14, 1, 196608, 15, 1, 196608, 16, 1, 196608, 65553, 1, 65536, 131089, 1, 65536, 196625, 1, 65536, 262161, 1, 65536, 327697, 1, 65536, 393233, 1, 65536, 458769, 1, 65536, 524305, 1, 65536, 589841, 1, 65536, 655377, 1, 65536, 720912, 1, 131072, 720911, 1, 131072, 720910, 1, 131072, 720909, 1, 131072, 720908, 1, 131072, 720907, 1, 131072, 720906, 1, 131072, 720905, 1, 131072, 720904, 1, 131072, 720903, 1, 131072, 720902, 1, 131072, 720901, 1, 131072, 720900, 1, 131072, 720899, 1, 131072, 720898, 1, 131072, 720897, 1, 131072, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 720913, 1, 196609, 17, 1, 65537, 720896, 1, 131073, 2, 1, 196608)
 
 [node name="TransmutableObject" parent="." instance=ExtResource("3_btlve")]
-position = Vector2(198, 145)
+position = Vector2(346, 134)
 
 [node name="TransmutableProperties" parent="TransmutableObject" instance=ExtResource("4_ws0pj")]
 modulate = Color(0, 1, 0, 1)
 transmute_color = 2
 transmute_shape = 2
 
-[node name="Player" parent="." instance=ExtResource("5_tig1v")]
-position = Vector2(74, 172)
-
 [node name="Door" parent="." instance=ExtResource("2_rlrwv")]
-position = Vector2(85, 94)
+position = Vector2(139, 106)
 
-[connection signal="body_entered" from="TileMap/@Area2D@198955" to="TileMap/@Area2D@198955" method="_on_body_entered"]
-[connection signal="body_exited" from="TileMap/@Area2D@198955" to="TileMap/@Area2D@198955" method="_on_body_exited"]
-[connection signal="body_entered" from="TileMap/@Area2D@198956" to="TileMap/@Area2D@198956" method="_on_body_entered"]
-[connection signal="body_exited" from="TileMap/@Area2D@198956" to="TileMap/@Area2D@198956" method="_on_body_exited"]
-[connection signal="body_entered" from="TileMap/@Area2D@198957" to="TileMap/@Area2D@198957" method="_on_body_entered"]
-[connection signal="body_exited" from="TileMap/@Area2D@198957" to="TileMap/@Area2D@198957" method="_on_body_exited"]
+[node name="Player" parent="." instance=ExtResource("5_tig1v")]
+position = Vector2(138, 244)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TransmutationCircle" parent="." instance=ExtResource("1_bgiia")]
+position = Vector2(446, 286)
+transmute_property = 1
+
+[connection signal="transmuted" from="Player" to="." method="_on_player_transmuted"]

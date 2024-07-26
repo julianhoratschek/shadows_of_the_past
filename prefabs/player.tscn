@@ -12,8 +12,12 @@ script = ExtResource("1_qcnnp")
 
 [node name="TransmutableProperties" parent="." instance=ExtResource("1_4lhp0")]
 modulate = Color(0, 0, 1, 1)
+position = Vector2(0, -15)
 transmute_color = 1
 no_animation = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_rbnw8")
+
+[connection signal="transmuted" from="TransmutableProperties" to="." method="_on_transmuted"]

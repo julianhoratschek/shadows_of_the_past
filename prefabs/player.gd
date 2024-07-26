@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
-var speed := 90.0
+class_name Player
+
+signal transmuted(property_name: TransmutableProperties.PropertyName, old_value, new_value)
+
+var speed := 180.0
+
+@onready var transmutable_properties := $TransmutableProperties
 
 func _input(event):
 	if Input.is_action_just_pressed("gme_interact"):
@@ -23,3 +29,7 @@ func _physics_process(delta):
 			if body.mass > 1.0:
 				return
 			body.apply_central_impulse(collision.get_normal() * -50)
+
+
+func _on_transmuted(property_name: TransmutableProperties.PropertyName, old_value, new_value):
+	transmuted.emit(property_name, old_value, new_value)

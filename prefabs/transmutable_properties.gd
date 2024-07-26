@@ -7,7 +7,7 @@ class_name TransmutableProperties
 enum PropertyName {COLOR, SHAPE, SIZE}
 
 enum TransColor {RED, BLUE, GREEN}
-enum TransShape {CIRCLE, TRIANGLE, SQUARE, FISH, LEAVE}
+enum TransShape {CIRCLE, TRIANGLE, SQUARE, FISH, LEAF}
 enum TransSize {SMALL, NORMAL, BIG}
 
 const PropertyMap := {
@@ -22,7 +22,7 @@ const ColorMap := {
 	TransColor.GREEN: Color.GREEN
 }
 
-signal transmuted(property_name: StringName, old_value, new_value)
+signal transmuted(property_name: PropertyName, old_value, new_value)
 
 var _properties := {
 	PropertyName.COLOR: TransColor.RED,
@@ -69,6 +69,10 @@ func _changed_size():
 
 func get_property(property_name: PropertyName):	
 	return _properties[property_name]
+
+func set_properties(other: TransmutableProperties):
+	for property_name in PropertyName:
+		change_property(property_name, other._properties[property_name])
 
 func change_property(property_name: PropertyName, new_value):
 	if not new_value in PropertyMap[property_name].values():

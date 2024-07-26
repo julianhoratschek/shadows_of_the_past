@@ -15,6 +15,10 @@ run/main_scene="res://scenes/shape_change_scene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+g="*res://globals.gd"
+
 [display]
 
 window/size/viewport_width=640
@@ -54,3 +58,4 @@ gme_down={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.830335, 0.830335, 0.830335, 1)

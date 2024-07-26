@@ -163,6 +163,7 @@ animations = [{
 }]
 
 [node name="TransmutationCircle" type="Area2D" groups=["transmutation_circles"]]
+modulate = Color(1, 1, 1, 0.207843)
 script = ExtResource("1_tvna6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

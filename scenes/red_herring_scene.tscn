@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://t8wklnpn8mav"]
+
+[ext_resource type="TileSet" uid="uid://dnh07qaoym8xq" path="res://scenes/tileset.tres" id="1_5ba3y"]
+[ext_resource type="Script" path="res://scenes/red_herring_scene.gd" id="1_afhu7"]
+[ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="2_01l85"]
+[ext_resource type="PackedScene" uid="uid://ccqeis0ebvplt" path="res://prefabs/door.tscn" id="3_lusp1"]
+[ext_resource type="PackedScene" uid="uid://cyrhvocyuyepp" path="res://prefabs/transmutable_object.tscn" id="5_vrrr2"]
+[ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="6_02bwi"]
+[ext_resource type="PackedScene" uid="uid://b8b32v2hxn41a" path="res://prefabs/transmutation_circle.tscn" id="7_uceo6"]
+
+[node name="RedHerringScene" type="Node2D"]
+script = ExtResource("1_afhu7")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_5ba3y")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 1, 19, 1, 1342177281, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 589824, 1, 0, 655360, 1, 0, 720896, 1, 0, 786432, 1, 0, 851968, 1, 1610612737, 1, 1, 1342177280, 2, 1, 1342177280, 3, 1, 1342177280, 4, 1, 1342177280, 5, 1, 1342177280, 6, 1, 1342177280, 7, 1, 1342177280, 8, 1, 1342177280, 9, 1, 1342177280, 10, 1, 1342177280, 11, 1, 1342177280, 12, 1, 1342177280, 13, 1, 1342177280, 14, 1, 1342177280, 15, 1, 1342177280, 16, 1, 1342177280, 17, 1, 1342177280, 18, 1, 1342177280, 65555, 1, 805306368, 131091, 1, 805306368, 196627, 1, 805306368, 262163, 1, 805306368, 327699, 1, 805306368, 393235, 1, 805306368, 458771, 1, 805306368, 524307, 1, 805306368, 589843, 1, 805306368, 655379, 1, 805306368, 720915, 1, 805306368, 786451, 1, 805306368, 851987, 1, 805306369, 851969, 1, 1610612736, 851970, 1, 1610612736, 851971, 1, 1610612736, 851972, 1, 1610612736, 851973, 1, 1610612736, 851974, 1, 1610612736, 851975, 1, 1610612736, 851976, 1, 1610612736, 851977, 1, 1610612736, 851978, 1, 1610612736, 851979, 1, 1610612736, 851980, 1, 1610612736, 851981, 1, 1610612736, 851982, 1, 1610612736, 851983, 1, 1610612736, 851984, 1, 1610612736, 851985, 1, 1610612736, 851986, 1, 1610612736)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_01l85")]
+position = Vector2(382, 317)
+
+[node name="Door" parent="." instance=ExtResource("3_lusp1")]
+position = Vector2(179, 135)
+
+[node name="TransmutableObject" parent="." instance=ExtResource("5_vrrr2")]
+position = Vector2(501, 70)
+
+[node name="TransmutableProperties" parent="TransmutableObject" instance=ExtResource("6_02bwi")]
+transmute_shape = 3
+no_animation = false
+
+[node name="TransmutableObject2" parent="." instance=ExtResource("5_vrrr2")]
+position = Vector2(161, 339)
+
+[node name="TransmutableProperties" parent="TransmutableObject2" instance=ExtResource("6_02bwi")]
+modulate = Color(0, 0, 1, 1)
+transmute_color = 1
+transmute_shape = 3
+no_animation = false
+
+[node name="TransmutationCircle" parent="." instance=ExtResource("7_uceo6")]
+position = Vector2(73, 327)
+
+[node name="TransmutationCircle2" parent="." instance=ExtResource("7_uceo6")]
+position = Vector2(547, 281)
+transmute_property = 1
