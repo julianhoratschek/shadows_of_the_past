@@ -1,0 +1,35 @@
+Room I:
+	- Change Form
+Room I.I:
+	- RED
+Room II:
+	- Red Herring
+	- Change Form to fish
+	- Flop on ground
+	- cross red line
+	- make other transformer blue
+	- push two fish into holes
+Cage Room:
+	- Cage
+	- Essence
+	- Sockets
+	- Three doors
+	- Transporter
+Room A:
+	- Boar (round) charges red
+	- immovable red object in transmutator
+	- become red
+	- Have boar charge against tree
+	- leaf falls
+	- set object red again (boar charges into circle)
+	- become green
+	- become round
+Room B:
+	- Fences around circle
+	- small mouse outside circle
+	- flees player into circle
+	- other transmutor makes player small
+	- cross fences, change transmutation
+	- push fish into holes
+Room C:
+	- 
