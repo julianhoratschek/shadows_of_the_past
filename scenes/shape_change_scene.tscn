@@ -35,6 +35,5 @@ position = Vector2(138, 244)
 
 [node name="TransmutationCircle" parent="." instance=ExtResource("1_bgiia")]
 position = Vector2(446, 286)
-transmute_property = 1
 
 [connection signal="transmuted" from="Player" to="." method="_on_player_transmuted"]

@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://xmhpflbt3gyl"]
+
+[ext_resource type="Script" path="res://prefabs/mouth.gd" id="1_1futi"]
+[ext_resource type="Texture2D" uid="uid://b46mtbvsdjova" path="res://assets/sprites/mouth_with_teeth.png" id="1_w4lht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us7r7"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_levga"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bnb1"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b16qf"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xru23"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpbxo"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2dnv"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd6d5"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xjr0"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egrg7"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih0gu"]
+atlas = ExtResource("1_w4lht")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63ug5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us7r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_levga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bnb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b16qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xru23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpbxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2dnv")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 12.0,
+"texture": SubResource("AtlasTexture_hd6d5")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_2xjr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egrg7")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_ih0gu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_als6b"]
+radius = 20.0
+height = 52.0
+
+[node name="Mouth" type="Area2D"]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_1futi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_63ug5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_als6b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
