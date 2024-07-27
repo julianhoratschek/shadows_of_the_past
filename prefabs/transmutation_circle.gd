@@ -3,16 +3,26 @@ extends Area2D
 class_name TransmutationCircle
 
 ## Stack of transmutable elements
-# TODO: reset stack on leave circle? bigger stack?
 static var property_stack: Array[TransmutableProperties] = []
 
 ## Associated Stack of circles for each element
 static var affected_circles: Array[TransmutationCircle] = []
 
+# TODO this is bad
+static var done := false
+
 ## Exchanges property static_transmute_property in both elements in property_stack
+# TODO cannot use two circles with same transmute_property. Mutex?
 func _transmute():
 	if property_stack.size() < 2:
 		return
+
+	if done:
+		done = false
+		return
+	
+	elif affected_circles[-1].transmute_property == affected_circles[-2].transmute_property:
+		done = true
 
 	var prop_buf = property_stack[-1].get_property(transmute_property)
 	
@@ -103,6 +113,7 @@ func abort_transmutation():
 
 
 func _on_body_entered(body: Node2D):
+	print("Here")
 	for child in body.get_children():
 		if child is TransmutableProperties:
 			_add_properties(child)

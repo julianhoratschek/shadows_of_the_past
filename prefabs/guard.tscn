@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d35g8f6d7aap0"]
+
+[ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="1_awrbh"]
+[ext_resource type="Script" path="res://prefabs/guard.gd" id="1_kvquk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqknr"]
+size = Vector2(32, 59)
+
+[node name="Guard" type="PathFollow2D"]
+script = ExtResource("1_kvquk")
+
+[node name="StaticBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -29.5)
+shape = SubResource("RectangleShape2D_eqknr")
+
+[node name="TransmutableProperties" parent="StaticBody2D" instance=ExtResource("1_awrbh")]
+position = Vector2(0, -39)
+transmute_shape = 7
+no_animation = false

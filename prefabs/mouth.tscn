@@ -99,6 +99,7 @@ height = 52.0
 
 [node name="Mouth" type="Area2D"]
 modulate = Color(1, 0, 0, 1)
+z_index = -1
 script = ExtResource("1_1futi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
