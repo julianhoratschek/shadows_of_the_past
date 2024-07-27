@@ -113,7 +113,6 @@ func abort_transmutation():
 
 
 func _on_body_entered(body: Node2D):
-	print("Here")
 	for child in body.get_children():
 		if child is TransmutableProperties:
 			_add_properties(child)
