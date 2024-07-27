@@ -9,21 +9,18 @@ static var property_stack: Array[TransmutableProperties] = []
 ## Associated Stack of circles for each element
 static var affected_circles: Array[TransmutationCircle] = []
 
-## What property should be changed
-static var static_transmute_property := TransmutableProperties.PropertyName.COLOR
-
 ## Exchanges property static_transmute_property in both elements in property_stack
-static func _transmute():
+func _transmute():
 	if property_stack.size() < 2:
 		return
 
-	var prop_buf = property_stack[-1].get_property(static_transmute_property)
+	var prop_buf = property_stack[-1].get_property(transmute_property)
 	
 	property_stack[-1].change_property(
-		static_transmute_property, 
-		property_stack[-2].get_property(static_transmute_property))
+		transmute_property, 
+		property_stack[-2].get_property(transmute_property))
 	property_stack[-2].change_property(
-		static_transmute_property, 
+		transmute_property, 
 		prop_buf)
 
 ## How much is subtracted/added to self.modulate.a per element in any circle?
@@ -32,11 +29,7 @@ const ModulateModifier := 0.4
 ## Indicated direction of circle fill animation
 var _aborted := false
 
-@export var transmute_property: TransmutableProperties.PropertyName:
-	get:
-		return static_transmute_property
-	set(value):
-		static_transmute_property = value
+@export var transmute_property := TransmutableProperties.PropertyName.COLOR
 
 @onready var circle := $Circle
 @onready var smoke := $Smoke
@@ -50,6 +43,7 @@ func _adjust_modulate(value: float):
 	if not self in affected_circles.slice(-2):
 		modulate.a = 1.0 - 2 * ModulateModifier
 		return
+		
 	modulate.a = value
 
 
@@ -137,5 +131,5 @@ func _on_circle_animation_finished():
 	
 	# Set _transmute to be called before next frame, but exactly once
 	var process_signal := get_tree().process_frame
-	if not process_signal.is_connected(TransmutationCircle._transmute):
-		process_signal.connect(TransmutationCircle._transmute, Object.CONNECT_ONE_SHOT)
+	if not process_signal.is_connected(_transmute):
+		process_signal.connect(_transmute, Object.CONNECT_ONE_SHOT)

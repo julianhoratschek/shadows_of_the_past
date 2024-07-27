@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D):
 		if (child is TransmutableProperties 
 			and child.transmute_shape == TransmutableProperties.TransShape.FISH 
 			and child.transmute_color == expected_color):
-				body.hide()
+				body.queue_free()
 				$AnimatedSprite2D.play(&"eat")
 
 
