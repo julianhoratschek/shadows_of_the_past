@@ -31,5 +31,12 @@ func _physics_process(delta):
 			body.apply_central_impulse(collision.get_normal() * -50)
 
 
+func desintegrate():
+	speed = 0.0
+	await transmutable_properties.desintegrate()
+
 func _on_transmuted(property_name: TransmutableProperties.PropertyName, old_value, new_value):
 	transmuted.emit(property_name, old_value, new_value)
+
+
+

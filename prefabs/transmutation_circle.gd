@@ -4,22 +4,25 @@ class_name TransmutationCircle
 
 ## Stack of transmutable elements
 # TODO: reset stack on leave circle? bigger stack?
-static var property_stack: Array[TransmutableProperties] = [null, null]
+static var property_stack: Array[TransmutableProperties] = []
 
 ## Associated Stack of circles for each element
-static var affected_circles: Array[TransmutationCircle] = [null, null]
+static var affected_circles: Array[TransmutationCircle] = []
 
 ## What property should be changed
 static var static_transmute_property := TransmutableProperties.PropertyName.COLOR
 
 ## Exchanges property static_transmute_property in both elements in property_stack
 static func _transmute():
-	var prop_buf = property_stack[0].get_property(static_transmute_property)
+	if property_stack.size() < 2:
+		return
+
+	var prop_buf = property_stack[-1].get_property(static_transmute_property)
 	
-	property_stack[0].change_property(
+	property_stack[-1].change_property(
 		static_transmute_property, 
-		property_stack[1].get_property(static_transmute_property))
-	property_stack[1].change_property(
+		property_stack[-2].get_property(static_transmute_property))
+	property_stack[-2].change_property(
 		static_transmute_property, 
 		prop_buf)
 
@@ -44,50 +47,52 @@ func _ready():
 
 
 func _adjust_modulate(value: float):
+	if not self in affected_circles.slice(-2):
+		modulate.a = 1.0 - 2 * ModulateModifier
+		return
 	modulate.a = value
 
 
 func _reset_circle():
+	circle.stop()
 	circle.frame = 0
 	circle.animation = &"idle"
 
 
 ## Add a property to the stack, as well as self to the stack of circles
 func _add_properties(props: TransmutableProperties):
-	if property_stack[0]:
-		property_stack[1] = property_stack[0]
-		affected_circles[1] = affected_circles[0]
-		
-	property_stack[0] = props
-	affected_circles[0] = self
-	
+	property_stack.push_back(props)
+	affected_circles.push_back(self)
+
+	# TODO only last two
 	get_tree().call_group(
 		&"transmutation_circles", 
 		&"_adjust_modulate", 
-		1.0 - (property_stack.count(null) * ModulateModifier))
+		1.0 - (clampi(2 - property_stack.size(), 0, 2) * ModulateModifier))
 
 
 ## Removes a property from the stack
-func _remove_properties(props: TransmutableProperties):	
-	if property_stack[0] == props:
-		property_stack[0] = property_stack[1]
-		affected_circles[0] = affected_circles[1]
-		property_stack[1] = null
-		affected_circles[1] = null
-		
-	elif property_stack[1] == props:
-		property_stack[1] = null
-		affected_circles[1] = null
+func _remove_properties(props: TransmutableProperties):
+	var prop_idx := property_stack.find(props)
 	
+	if prop_idx == -1:
+		print("ERROR Trying to remove unregistered property from circle")
+		return
+	
+	property_stack.pop_at(prop_idx)
+	affected_circles.pop_at(prop_idx)
+	
+	# TODO only last two
 	get_tree().call_group(
 		&"transmutation_circles", 
 		&"_adjust_modulate", 
-		1.0 - (property_stack.count(null) * ModulateModifier))
+		1.0 - (clampi(2 - property_stack.size(), 0, 2) * ModulateModifier))
 
 
 ## Should be called on group. Starts load-up animation
 func start_transmutation():
-	if null in property_stack or not self in affected_circles:
+	if (property_stack.size() < 2 
+		or not self in affected_circles.slice(-2)):
 		return
 
 	circle.play(&"transmute")

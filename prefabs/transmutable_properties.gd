@@ -99,4 +99,11 @@ func change_property(property_name: PropertyName, new_value):
 		default_change = true
 
 
+func desintegrate():
+	modulate = Color.WHITE
+	$AnimatedSprite2D.play(&"desintegrate")
+	await $AnimatedSprite2D.animation_finished
+	$AnimatedSprite2D.play(&"smoke")
+
+
 
