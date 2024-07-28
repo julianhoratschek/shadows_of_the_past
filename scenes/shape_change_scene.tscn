@@ -13,6 +13,7 @@
 script = ExtResource("1_fi7ni")
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 position = Vector2(180, 30)
 tile_set = ExtResource("2_t0n25")
 format = 2
@@ -28,7 +29,7 @@ transmute_shape = 2
 
 [node name="Door" parent="TileMap" instance=ExtResource("2_rlrwv")]
 position = Vector2(62, 82)
-next_room = "res://scenes/red_room_scene.tscn"
+next_room = "res://scenes/gone_fishing_scene.tscn"
 
 [node name="Player" parent="TileMap" instance=ExtResource("5_tig1v")]
 position = Vector2(76, 257)

@@ -210,6 +210,7 @@ frame = 7
 frame_progress = 1.0
 
 [node name="Indicator" type="AnimatedSprite2D" parent="."]
+z_index = -1
 position = Vector2(0, 36)
 sprite_frames = SubResource("SpriteFrames_tuc6r")
 animation = &"idle"

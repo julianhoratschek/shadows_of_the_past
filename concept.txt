@@ -1,3 +1,11 @@
+- shape_change
+- gone_fishing
+- red_room
+- feeding_time
+- red_herring
+
+
+
 Room I:
 	- Change Form
 Room I.I:

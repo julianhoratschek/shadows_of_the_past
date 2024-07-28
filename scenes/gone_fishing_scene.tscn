@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://bpxiv3580detk"]
+
+[ext_resource type="TileSet" uid="uid://dnh07qaoym8xq" path="res://scenes/tileset.tres" id="1_3jfuw"]
+[ext_resource type="Script" path="res://scenes/gone_fishing_scene.gd" id="1_m1j7s"]
+[ext_resource type="PackedScene" uid="uid://ccqeis0ebvplt" path="res://prefabs/door.tscn" id="2_ogtvd"]
+[ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="3_ofesx"]
+[ext_resource type="PackedScene" uid="uid://xmhpflbt3gyl" path="res://prefabs/mouth.tscn" id="4_44dgc"]
+[ext_resource type="PackedScene" uid="uid://cyrhvocyuyepp" path="res://prefabs/transmutable_object.tscn" id="5_iv2s6"]
+[ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="6_boeyb"]
+[ext_resource type="PackedScene" uid="uid://b8b32v2hxn41a" path="res://prefabs/transmutation_circle.tscn" id="7_fk0xg"]
+[ext_resource type="PackedScene" uid="uid://deoivk3pspj0i" path="res://ui/button_display.tscn" id="8_6vywk"]
+
+[node name="GoneFishingScene" type="Node"]
+script = ExtResource("1_m1j7s")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+position = Vector2(96, 16)
+tile_set = ExtResource("1_3jfuw")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 1, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 589824, 1, 0, 1, 1, 1342177280, 2, 1, 1342177280, 3, 1, 1342177280, 4, 1, 1342177280, 5, 1, 1342177280, 6, 1, 1342177280, 7, 1, 1342177280, 8, 1, 1342177280, 9, 1, 1342177280, 655360, 1, 0, 720896, 1, 0, 786432, 1, 0, 851968, 1, 1610612737, 851978, 1, 805306369, 10, 1, 1342177281, 65546, 1, 805306368, 131082, 1, 805306368, 196618, 1, 805306368, 262154, 1, 805306368, 327690, 1, 805306368, 393226, 1, 805306368, 458762, 1, 805306368, 524298, 1, 805306368, 589834, 1, 805306368, 655370, 1, 805306368, 720906, 1, 805306368, 786442, 1, 805306368, 851977, 1, 1610612736, 851976, 1, 1610612736, 851975, 1, 1610612736, 851974, 1, 1610612736, 851973, 1, 1610612736, 851972, 1, 1610612736, 851971, 1, 1610612736, 851970, 1, 1610612736, 851969, 1, 1610612736)
+
+[node name="Door" parent="TileMap" instance=ExtResource("2_ogtvd")]
+position = Vector2(144, 88)
+next_room = "res://scenes/red_room_scene.tscn"
+
+[node name="Player" parent="TileMap" instance=ExtResource("3_ofesx")]
+position = Vector2(96, 392)
+
+[node name="Mouth" parent="TileMap" instance=ExtResource("4_44dgc")]
+position = Vector2(72, 280)
+
+[node name="Mouth2" parent="TileMap" instance=ExtResource("4_44dgc")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(152, 144)
+expected_color = 1
+
+[node name="Mouth3" parent="TileMap" instance=ExtResource("4_44dgc")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(224, 288)
+expected_color = 1
+
+[node name="RedFish" parent="TileMap" instance=ExtResource("5_iv2s6")]
+position = Vector2(256, 88)
+
+[node name="TransmutableProperties" parent="TileMap/RedFish" instance=ExtResource("6_boeyb")]
+transmute_shape = 3
+no_animation = false
+
+[node name="BlueFish" parent="TileMap" instance=ExtResource("5_iv2s6")]
+position = Vector2(64, 176)
+
+[node name="TransmutableProperties" parent="TileMap/BlueFish" instance=ExtResource("6_boeyb")]
+modulate = Color(0, 0, 1, 1)
+transmute_color = 1
+transmute_shape = 3
+no_animation = false
+
+[node name="GreenFish" parent="TileMap" instance=ExtResource("5_iv2s6")]
+position = Vector2(224, 320)
+
+[node name="TransmutableProperties" parent="TileMap/GreenFish" instance=ExtResource("6_boeyb")]
+modulate = Color(0, 1, 0, 1)
+transmute_color = 2
+transmute_shape = 3
+no_animation = false
+
+[node name="TransmutationCircle" parent="TileMap" instance=ExtResource("7_fk0xg")]
+position = Vector2(152, 216)
+
+[node name="Block" parent="TileMap" instance=ExtResource("5_iv2s6")]
+position = Vector2(224, 224)
+
+[node name="TransmutableProperties" parent="TileMap/Block" instance=ExtResource("6_boeyb")]
+modulate = Color(0, 0, 1, 1)
+transmute_color = 1
+transmute_shape = 2
+
+[node name="ButtonDisplay" parent="." instance=ExtResource("8_6vywk")]
+offset_left = 472.0
+offset_top = 168.0
+offset_right = 623.0
+offset_bottom = 277.0
+
+[connection signal="fed" from="TileMap/Mouth" to="." method="_on_mouth_fed"]
+[connection signal="fed" from="TileMap/Mouth2" to="." method="_on_mouth_fed"]
+[connection signal="fed" from="TileMap/Mouth3" to="." method="_on_mouth_fed"]

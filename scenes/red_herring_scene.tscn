@@ -30,6 +30,7 @@ b = Vector2(-34, 54)
 script = ExtResource("1_afhu7")
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 position = Vector2(56, 16)
 tile_set = ExtResource("1_5ba3y")
 format = 2
