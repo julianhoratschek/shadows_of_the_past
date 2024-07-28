@@ -20,6 +20,7 @@ var _transition_size_change := 1.2
 var _room_path := "res://scenes/shape_change_scene.tscn"
 var _reset := false
 
+var _to_winning_scene := false
 
 func _ready():
 	scene_fade_in()
@@ -27,7 +28,7 @@ func _ready():
 
 
 func _input(event):
-	if not _reset and Input.is_key_pressed(KEY_F):
+	if not _reset and Input.is_action_just_pressed(&"gme_reset_room"):
 		_reset = true
 		scene_fade_out(_room_path)
 
@@ -40,8 +41,11 @@ func _process(delta):
 	transition_rect.material.set_shader_parameter("circle_size", _transition_size)
 	
 	if (_transition_direction == TransitionDirection.FADE_OUT and _transition_size <= 0.0):
-		do_transition()
-		scene_fade_in()
+		if _to_winning_scene:
+			get_tree().change_scene_to_file(_room_path)
+		else:
+			do_transition()
+			scene_fade_in()
 		
 	elif _transition_size >= 1.5:
 		_transition_direction = TransitionDirection.NONE
@@ -89,5 +93,5 @@ func do_transition():
 
 
 func _on_player_winning():
-	# scene_fade_out("res://scenes/winning_scene.tscn")
-	print("You won")
+	_to_winning_scene = true
+	scene_fade_out("res://scenes/winning_scene.tscn")

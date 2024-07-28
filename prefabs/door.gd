@@ -30,4 +30,7 @@ func close():
 
 func _on_body_entered(body: Node2D):
 	if body is Player:
+		var modulate_tween := body.create_tween()
+		modulate_tween.tween_property(body, "modulate", Color(Color.BLACK, 0.0), 0.8)
+		body.speed = 0.0
 		entered.emit(next_room)

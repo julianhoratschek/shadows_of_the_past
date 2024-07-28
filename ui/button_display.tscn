@@ -1,18 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://deoivk3pspj0i"]
+[gd_scene load_steps=7 format=3 uid="uid://deoivk3pspj0i"]
 
-[ext_resource type="Texture2D" uid="uid://c3lpm1n3grr0g" path="res://assets/sprites/keyboard_buttons.png" id="1_bkc6j"]
 [ext_resource type="FontFile" uid="uid://em3ca5nycu7m" path="res://assets/fonts/retro_gaming.ttf" id="1_nsx6j"]
+[ext_resource type="Script" path="res://ui/button_display.gd" id="2_c6xg7"]
+[ext_resource type="Texture2D" uid="uid://c26y8pb5p3lky" path="res://assets/sprites/key_display.png" id="2_wwwkd"]
 
 [sub_resource type="Theme" id="Theme_jqsg5"]
 default_font = ExtResource("1_nsx6j")
 Label/colors/font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5yj7"]
-atlas = ExtResource("1_bkc6j")
+atlas = ExtResource("2_wwwkd")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cyyg"]
-atlas = ExtResource("1_bkc6j")
+atlas = ExtResource("2_wwwkd")
 region = Rect2(32, 0, 32, 32)
 
 [node name="ButtonDisplay" type="VBoxContainer"]
@@ -21,6 +22,7 @@ offset_bottom = 109.0
 size_flags_horizontal = 0
 theme = SubResource("Theme_jqsg5")
 theme_override_constants/separation = 45
+script = ExtResource("2_c6xg7")
 
 [node name="ButtonDisplay" type="HBoxContainer" parent="."]
 layout_mode = 2
