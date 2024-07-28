@@ -10,13 +10,13 @@ var speed := 180.0
 @onready var transmutable_properties := $TransmutableProperties
 
 func _input(event):
-	if Input.is_action_just_pressed("gme_interact"):
+	if Input.is_action_just_pressed(&"gme_interact"):
 		get_tree().call_group(&"transmutation_circles", &"start_transmutation")
-	elif Input.is_action_just_released("gme_interact"):
+	elif Input.is_action_just_released(&"gme_interact"):
 		get_tree().call_group(&"transmutation_circles", &"abort_transmutation")
 
 func _physics_process(delta):
-	var direction := Input.get_vector("gme_left", "gme_right", "gme_up", "gme_down")
+	var direction := Input.get_vector(&"gme_left", &"gme_right", &"gme_up", &"gme_down")
 	
 	velocity = direction * speed
 	

@@ -10,11 +10,7 @@ static var property_stack: Array[TransmutableProperties] = []
 ## Associated Stack of circles for each element
 static var affected_circles: Array[TransmutationCircle] = []
 
-# TODO this is bad
-static var done := false
-
 ## Exchanges property static_transmute_property in both elements in property_stack
-# TODO cannot use two circles with same transmute_property. Mutex?
 func _transmute():
 	if property_stack.size() < 2:
 		return
@@ -34,6 +30,7 @@ const ModulateModifier := 0.4
 ## Indicated direction of circle fill animation
 var _aborted := false
 
+## Property this circle will exchange
 @export var transmute_property := TransmutableProperties.PropertyName.COLOR:
 	get:
 		return transmute_property
@@ -52,14 +49,19 @@ func _ready():
 	_adjust_modulate(0.2)
 
 
+## Set modulate of the circle sprite to value if this circle can be used in the
+## next transmutation
 func _adjust_modulate(value: float):
+	# If this circle is currently unused, set low alpha
 	if not self in affected_circles.slice(-2):
 		circle.modulate.a = 1.0 - 2 * ModulateModifier
 		return
-		
+	
+	# Otherwise set alpha to value
 	circle.modulate.a = value
 
 
+## Reset visual circle to standard values
 func _reset_circle():
 	circle.stop()
 	circle.frame = 0
@@ -71,7 +73,7 @@ func _add_properties(props: TransmutableProperties):
 	property_stack.push_back(props)
 	affected_circles.push_back(self)
 
-	# TODO only last two
+	# TODO Here only the last two could be called?
 	get_tree().call_group(
 		&"transmutation_circles", 
 		&"_adjust_modulate", 
@@ -95,6 +97,7 @@ func _remove_properties(props: TransmutableProperties):
 		&"_adjust_modulate", 
 		1.0 - (clampi(2 - property_stack.size(), 0, 2) * ModulateModifier))
 	
+	# Abort all animations if there aren't enough properties
 	if property_stack.size() < 2:
 		get_tree().call_group(
 			&"transmutation_circles",
@@ -103,6 +106,7 @@ func _remove_properties(props: TransmutableProperties):
 
 ## Should be called on group. Starts load-up animation
 func start_transmutation():
+	# Only affects last two circles
 	if (property_stack.size() < 2 
 		or not self in affected_circles.slice(-2)):
 		return
@@ -147,9 +151,10 @@ func _on_circle_animation_finished():
 	
 	_reset_circle()
 
-	# Set _transmute to be called before next frame, but exactly once
+	# Set _transmute to be called before next frame
 	var process_signal := get_tree().process_frame
 	
+	# Add another call, if both circles use different properties
 	var other_circle := affected_circles[-1] if affected_circles[-2] == self else affected_circles[-2]
 	if (other_circle.transmute_property != transmute_property 
 		or not process_signal.is_connected(other_circle._transmute)):

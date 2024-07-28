@@ -4,7 +4,7 @@ extends Node
 func _ready():
 	$TileMap/Door.open()
 
-
+## If possible, try to touch the shadow
 func _on_area_2d_body_entered(body):
 	if not body is Player:
 		pass

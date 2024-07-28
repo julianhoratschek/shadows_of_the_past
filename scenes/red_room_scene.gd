@@ -5,7 +5,7 @@ var red_letters := 0
 
 @onready var door := $TileMap/Door
 
-
+## All three letters must be red to open the door
 func _on_letter_transmuted(property_name, old_value, new_value):
 	if old_value == new_value:
 		return
