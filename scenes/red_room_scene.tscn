@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://n1y37orejf1c"]
+[gd_scene load_steps=11 format=3 uid="uid://n1y37orejf1c"]
 
 [ext_resource type="Script" path="res://scenes/red_room_scene.gd" id="1_hmh1k"]
 [ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="2_bijmb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="5_bj60t"]
 [ext_resource type="PackedScene" uid="uid://b8b32v2hxn41a" path="res://prefabs/transmutation_circle.tscn" id="6_41p0o"]
 [ext_resource type="PackedScene" uid="uid://d35g8f6d7aap0" path="res://prefabs/guard.tscn" id="8_v72v0"]
+[ext_resource type="PackedScene" uid="uid://deoivk3pspj0i" path="res://ui/button_display.tscn" id="9_urbkw"]
 
 [sub_resource type="Curve2D" id="Curve2D_dorgt"]
 _data = {
@@ -15,70 +16,75 @@ _data = {
 }
 point_count = 9
 
-[node name="RedRoomScene" type="Node2D"]
-y_sort_enabled = true
+[node name="RedRoomScene" type="Node"]
 script = ExtResource("1_hmh1k")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(32, 32)
 tile_set = ExtResource("2_uvd68")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 1, 786432, 1, 1610612737, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 589824, 1, 0, 655360, 1, 0, 720896, 1, 0, 1, 1, 1342177280, 2, 1, 1342177280, 3, 1, 1342177280, 4, 1, 1342177280, 5, 1, 1342177280, 6, 1, 1342177280, 7, 1, 1342177280, 786441, 1, 805306369, 786440, 1, 1610612736, 786439, 1, 1610612736, 786438, 1, 1610612736, 786437, 1, 1610612736, 786436, 1, 1610612736, 786435, 1, 1610612736, 786434, 1, 1610612736, 786433, 1, 1610612736, 65545, 1, 805306368, 131081, 1, 805306368, 196617, 1, 805306368, 262153, 1, 805306368, 327689, 1, 805306368, 393225, 1, 805306368, 458761, 1, 805306368, 524297, 1, 805306368, 589833, 1, 805306368, 655369, 1, 805306368, 720905, 1, 805306368, 65552, 1, 805306368, 131088, 1, 805306368, 196624, 1, 805306368, 262160, 1, 805306368, 327696, 1, 805306368, 393232, 1, 805306368, 458768, 1, 805306368, 524304, 1, 805306368, 589840, 1, 805306368, 655376, 1, 805306368, 720912, 1, 805306368, 786448, 1, 805306369, 16, 1, 1342177281, 8, 1, 1342177280, 9, 1, 1342177281, 10, 1, 1342177280, 11, 1, 1342177280, 12, 1, 1342177280, 13, 1, 1342177280, 14, 1, 1342177280, 15, 1, 1342177280, 786447, 1, 1610612736, 786446, 1, 1610612736, 786445, 1, 1610612736, 786444, 1, 1610612736, 786443, 1, 1610612736, 786442, 1, 1610612736)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Player" parent="TileMap" instance=ExtResource("2_bijmb")]
+position = Vector2(188, 252)
 
-[node name="Player" parent="." instance=ExtResource("2_bijmb")]
-position = Vector2(187, 253)
-
-[node name="Door" parent="." instance=ExtResource("3_4ujo5")]
+[node name="Door" parent="TileMap" instance=ExtResource("3_4ujo5")]
 position = Vector2(196, 123)
+next_room = "res://scenes/red_herring_scene.tscn"
 
-[node name="Letter_R" parent="." instance=ExtResource("4_abpod")]
+[node name="Letter_R" parent="TileMap" instance=ExtResource("4_abpod")]
 position = Vector2(246, 198)
 
-[node name="TransmutableProperties" parent="Letter_R" instance=ExtResource("5_bj60t")]
+[node name="TransmutableProperties" parent="TileMap/Letter_R" instance=ExtResource("5_bj60t")]
 modulate = Color(0, 0, 1, 1)
 transmute_color = 1
 transmute_shape = 4
 
-[node name="Letter_E" parent="." instance=ExtResource("4_abpod")]
+[node name="Letter_E" parent="TileMap" instance=ExtResource("4_abpod")]
 position = Vector2(151, 325)
 
-[node name="TransmutableProperties" parent="Letter_E" instance=ExtResource("5_bj60t")]
+[node name="TransmutableProperties" parent="TileMap/Letter_E" instance=ExtResource("5_bj60t")]
 modulate = Color(0, 1, 0, 1)
 transmute_color = 2
 transmute_shape = 5
 
-[node name="Letter_D" parent="." instance=ExtResource("4_abpod")]
+[node name="Letter_D" parent="TileMap" instance=ExtResource("4_abpod")]
 position = Vector2(81, 156)
 
-[node name="TransmutableProperties" parent="Letter_D" instance=ExtResource("5_bj60t")]
+[node name="TransmutableProperties" parent="TileMap/Letter_D" instance=ExtResource("5_bj60t")]
 modulate = Color(0, 0, 1, 1)
 transmute_color = 1
 transmute_shape = 6
 
-[node name="TransmutationCircle" parent="." instance=ExtResource("6_41p0o")]
+[node name="TransmutationCircle" parent="TileMap" instance=ExtResource("6_41p0o")]
 position = Vector2(477, 353)
 
-[node name="TransmutationCircle2" parent="." instance=ExtResource("6_41p0o")]
+[node name="TransmutationCircle2" parent="TileMap" instance=ExtResource("6_41p0o")]
 position = Vector2(91, 229)
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="TileMap"]
 curve = SubResource("Curve2D_dorgt")
 
-[node name="Guard" parent="Path2D" instance=ExtResource("8_v72v0")]
+[node name="Guard" parent="TileMap/Path2D" instance=ExtResource("8_v72v0")]
 position = Vector2(366, 338)
 rotates = false
 
-[node name="Guard2" parent="Path2D" instance=ExtResource("8_v72v0")]
+[node name="Guard2" parent="TileMap/Path2D" instance=ExtResource("8_v72v0")]
 position = Vector2(496.627, 215.161)
 progress = 299.533
 rotates = false
 
-[node name="Guard3" parent="Path2D" instance=ExtResource("8_v72v0")]
+[node name="Guard3" parent="TileMap/Path2D" instance=ExtResource("8_v72v0")]
 position = Vector2(387.339, 67.0525)
 progress = 554.103
 rotates = false
 
-[connection signal="transmuted" from="Letter_R/TransmutableProperties" to="." method="_on_letter_transmuted"]
-[connection signal="transmuted" from="Letter_E/TransmutableProperties" to="." method="_on_letter_transmuted"]
-[connection signal="transmuted" from="Letter_D/TransmutableProperties" to="." method="_on_letter_transmuted"]
+[node name="ButtonDisplay" parent="." instance=ExtResource("9_urbkw")]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 191.0
+offset_bottom = 149.0
+
+[connection signal="transmuted" from="TileMap/Letter_R/TransmutableProperties" to="." method="_on_letter_transmuted"]
+[connection signal="transmuted" from="TileMap/Letter_E/TransmutableProperties" to="." method="_on_letter_transmuted"]
+[connection signal="transmuted" from="TileMap/Letter_D/TransmutableProperties" to="." method="_on_letter_transmuted"]

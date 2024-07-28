@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://deoivk3pspj0i"]
+
+[ext_resource type="Texture2D" uid="uid://c3lpm1n3grr0g" path="res://assets/sprites/keyboard_buttons.png" id="1_bkc6j"]
+[ext_resource type="FontFile" uid="uid://em3ca5nycu7m" path="res://assets/fonts/retro_gaming.ttf" id="1_nsx6j"]
+
+[sub_resource type="Theme" id="Theme_jqsg5"]
+default_font = ExtResource("1_nsx6j")
+Label/colors/font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5yj7"]
+atlas = ExtResource("1_bkc6j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cyyg"]
+atlas = ExtResource("1_bkc6j")
+region = Rect2(32, 0, 32, 32)
+
+[node name="ButtonDisplay" type="VBoxContainer"]
+offset_right = 151.0
+offset_bottom = 109.0
+size_flags_horizontal = 0
+theme = SubResource("Theme_jqsg5")
+theme_override_constants/separation = 45
+
+[node name="ButtonDisplay" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ButtonDisplay"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a5yj7")
+
+[node name="Label" type="Label" parent="ButtonDisplay"]
+layout_mode = 2
+text = "Transmute"
+
+[node name="ButtonDisplay2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ButtonDisplay2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6cyyg")
+
+[node name="Label" type="Label" parent="ButtonDisplay2"]
+layout_mode = 2
+text = "Reset Room
+"

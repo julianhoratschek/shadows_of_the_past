@@ -140,7 +140,7 @@ func get_property(property_name: PropertyName):
 
 ## Set all properties to the values of [param other]. Calls [method change_property]
 func set_properties(other: TransmutableProperties):
-	for property_name in PropertyName:
+	for property_name in PropertyName.values():
 		change_property(property_name, other._properties[property_name])
 
 

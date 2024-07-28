@@ -1,10 +1,6 @@
-extends Node2D
+extends Node
 
 class_name BaseRoom
-
-
-func center_camera(cam: Camera2D, tile_map: TileMap):
-	cam.global_position = Vector2i(32, 32) * tile_map.get_used_rect().get_center()
 
 
 func load_properties(player: Player):

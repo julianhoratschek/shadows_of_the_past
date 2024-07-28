@@ -1,11 +1,9 @@
-extends BaseRoom
+extends Node
 
 
 var red_letters := 0
 
-func _ready():
-	load_properties($Player)
-	center_camera($Camera2D, $TileMap)
+@onready var door := $TileMap/Door
 
 
 func _on_letter_transmuted(property_name, old_value, new_value):
@@ -19,6 +17,6 @@ func _on_letter_transmuted(property_name, old_value, new_value):
 		red_letters -= 1
 	
 	if red_letters == 3:
-		$Door.open()
-	elif $Door.is_open:
-		$Door.close()
+		door.open()
+	elif door.is_open:
+		door.close()

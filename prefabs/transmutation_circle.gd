@@ -17,13 +17,6 @@ func _transmute():
 	if property_stack.size() < 2:
 		return
 
-	if done:
-		done = false
-		return
-	
-	elif affected_circles[-1].transmute_property == affected_circles[-2].transmute_property:
-		done = true
-
 	var prop_buf = property_stack[-1].get_property(transmute_property)
 	
 	property_stack[-1].change_property(
@@ -91,6 +84,11 @@ func _remove_properties(props: TransmutableProperties):
 		&"transmutation_circles", 
 		&"_adjust_modulate", 
 		1.0 - (clampi(2 - property_stack.size(), 0, 2) * ModulateModifier))
+	
+	if property_stack.size() < 2:
+		get_tree().call_group(
+			&"transmutation_circles",
+			&"abort_transmutation")
 
 
 ## Should be called on group. Starts load-up animation
@@ -129,7 +127,7 @@ func _on_body_exited(body: Node2D):
 ## Used to determine if load-animation is finished
 func _on_circle_animation_finished():
 	# Don't do anything if "unloading" after aborting or any other animation is playing
-	if _aborted or circle.animation != &"transmute":
+	if _aborted or affected_circles.size() < 2 or circle.animation != &"transmute":
 		_reset_circle()
 		return
 	
@@ -138,8 +136,12 @@ func _on_circle_animation_finished():
 	smoke.play(&"idle")
 	
 	_reset_circle()
-	
+
 	# Set _transmute to be called before next frame, but exactly once
 	var process_signal := get_tree().process_frame
-	if not process_signal.is_connected(_transmute):
-		process_signal.connect(_transmute, Object.CONNECT_ONE_SHOT)
+	
+	var other_circle := affected_circles[-1] if affected_circles[-2] == self else affected_circles[-2]
+	if (other_circle.transmute_property != transmute_property 
+		or not process_signal.is_connected(other_circle._transmute)):
+			process_signal.connect(_transmute, Object.CONNECT_ONE_SHOT)
+	

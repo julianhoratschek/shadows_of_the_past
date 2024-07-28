@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2fsbfo5hofqj"]
+
+[ext_resource type="Shader" path="res://scenes/scene_transition.gdshader" id="1_d738x"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_o2dvt"]
+[ext_resource type="PackedScene" uid="uid://chq6iwrtlbxhr" path="res://scenes/shape_change_scene.tscn" id="2_hlw80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkn8k"]
+shader = ExtResource("1_d738x")
+shader_parameter/circle_size = 1.5
+shader_parameter/circle_position = Vector2(0.5, 0.5)
+shader_parameter/screen_width = 640.0
+shader_parameter/screen_height = 480.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o2dvt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_vkn8k")
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Scene" type="Node2D" parent="."]
+
+[node name="ShapeChangeScene" parent="Scene" instance=ExtResource("2_hlw80")]

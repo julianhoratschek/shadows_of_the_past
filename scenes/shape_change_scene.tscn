@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://chq6iwrtlbxhr"]
+[gd_scene load_steps=9 format=3 uid="uid://chq6iwrtlbxhr"]
 
 [ext_resource type="PackedScene" uid="uid://b8b32v2hxn41a" path="res://prefabs/transmutation_circle.tscn" id="1_bgiia"]
 [ext_resource type="Script" path="res://scenes/shape_change_scene.gd" id="1_fi7ni"]
@@ -7,33 +7,39 @@
 [ext_resource type="PackedScene" uid="uid://cyrhvocyuyepp" path="res://prefabs/transmutable_object.tscn" id="3_btlve"]
 [ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="4_ws0pj"]
 [ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="5_tig1v"]
+[ext_resource type="PackedScene" uid="uid://deoivk3pspj0i" path="res://ui/button_display.tscn" id="8_aed76"]
 
-[node name="ShapeChangeScene" type="Node2D"]
-y_sort_enabled = true
+[node name="ShapeChangeScene" type="Node"]
 script = ExtResource("1_fi7ni")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(180, 30)
 tile_set = ExtResource("2_t0n25")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 1, 1, 1, 196608, 3, 1, 196608, 4, 1, 196608, 5, 1, 196608, 6, 1, 196608, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 7, 1, 196608, 8, 1, 196608, 9, 1, 196608, 10, 1, 196608, 11, 1, 196608, 12, 1, 196608, 13, 1, 196608, 14, 1, 196608, 15, 1, 196608, 16, 1, 196608, 65553, 1, 65536, 131089, 1, 65536, 196625, 1, 65536, 262161, 1, 65536, 327697, 1, 65536, 393233, 1, 65536, 458769, 1, 65536, 524305, 1, 65536, 589841, 1, 65536, 655377, 1, 65536, 720912, 1, 131072, 720911, 1, 131072, 720910, 1, 131072, 720909, 1, 131072, 720908, 1, 131072, 720907, 1, 131072, 720906, 1, 131072, 720905, 1, 131072, 720904, 1, 131072, 720903, 1, 131072, 720902, 1, 131072, 720901, 1, 131072, 720900, 1, 131072, 720899, 1, 131072, 720898, 1, 131072, 720897, 1, 131072, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 720913, 1, 196609, 17, 1, 65537, 720896, 1, 131073, 2, 1, 196608)
+layer_0/tile_data = PackedInt32Array(4, 1, 196608, 5, 1, 196608, 6, 1, 196608, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 7, 1, 1342177281, 720903, 1, 805306369, 720902, 1, 131072, 720901, 1, 131072, 720900, 1, 131072, 720899, 1, 131072, 720898, 1, 131072, 720897, 1, 131072, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 720896, 1, 131073, 65543, 1, 805306368, 131079, 1, 805306368, 196615, 1, 805306368, 262151, 1, 805306368, 327687, 1, 805306368, 393223, 1, 805306368, 458759, 1, 805306368, 524295, 1, 805306368, 589831, 1, 805306368, 655367, 1, 805306368, 0, 1, 1, 1, 1, 196608, 2, 1, 196608, 3, 1, 196608)
 
-[node name="TransmutableObject" parent="." instance=ExtResource("3_btlve")]
-position = Vector2(346, 134)
+[node name="TransmutableObject" parent="TileMap" instance=ExtResource("3_btlve")]
+position = Vector2(153, 207)
 
-[node name="TransmutableProperties" parent="TransmutableObject" instance=ExtResource("4_ws0pj")]
+[node name="TransmutableProperties" parent="TileMap/TransmutableObject" instance=ExtResource("4_ws0pj")]
 modulate = Color(0, 1, 0, 1)
 transmute_color = 2
 transmute_shape = 2
 
-[node name="Door" parent="." instance=ExtResource("2_rlrwv")]
-position = Vector2(139, 106)
+[node name="Door" parent="TileMap" instance=ExtResource("2_rlrwv")]
+position = Vector2(62, 82)
+next_room = "res://scenes/red_room_scene.tscn"
 
-[node name="Player" parent="." instance=ExtResource("5_tig1v")]
-position = Vector2(138, 244)
+[node name="Player" parent="TileMap" instance=ExtResource("5_tig1v")]
+position = Vector2(76, 257)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="TransmutationCircle" parent="TileMap" instance=ExtResource("1_bgiia")]
+position = Vector2(153, 135)
 
-[node name="TransmutationCircle" parent="." instance=ExtResource("1_bgiia")]
-position = Vector2(446, 286)
+[node name="ButtonDisplay" parent="." instance=ExtResource("8_aed76")]
+offset_left = 464.0
+offset_top = 177.0
+offset_right = 615.0
+offset_bottom = 286.0
 
-[connection signal="transmuted" from="Player" to="." method="_on_player_transmuted"]
+[connection signal="transmuted" from="TileMap/Player" to="." method="_on_player_transmuted"]

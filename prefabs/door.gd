@@ -1,10 +1,15 @@
 extends Area2D
 
+class_name Door
+
+signal entered
 
 var _is_open := false
 var is_open: bool:
 	get:
 		return _is_open
+
+@export_file var next_room
 
 func open():
 	if _is_open:
@@ -25,4 +30,4 @@ func close():
 
 func _on_body_entered(body: Node2D):
 	if body is Player:
-		print("entered")
+		entered.emit()
