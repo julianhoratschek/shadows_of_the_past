@@ -460,4 +460,3 @@ script = ExtResource("1_fuc3w")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ph3mf")
 animation = &"triangle_idle"
-frame_progress = 0.360951

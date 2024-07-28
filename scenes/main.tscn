@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2fsbfo5hofqj"]
+[gd_scene load_steps=6 format=3 uid="uid://c2fsbfo5hofqj"]
 
 [ext_resource type="Shader" path="res://scenes/scene_transition.gdshader" id="1_d738x"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_o2dvt"]
 [ext_resource type="PackedScene" uid="uid://chq6iwrtlbxhr" path="res://scenes/shape_change_scene.tscn" id="2_hlw80"]
+[ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="4_thkuk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vkn8k"]
 shader = ExtResource("1_d738x")
@@ -24,3 +25,7 @@ color = Color(0, 0, 0, 1)
 [node name="Scene" type="Node2D" parent="."]
 
 [node name="ShapeChangeScene" parent="Scene" instance=ExtResource("2_hlw80")]
+
+[node name="ResetProperties" parent="." instance=ExtResource("4_thkuk")]
+visible = false
+position = Vector2(-378, 13)

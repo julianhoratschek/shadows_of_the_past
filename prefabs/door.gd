@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Door
 
-signal entered
+signal entered(next_room_path: String)
 
 var _is_open := false
 var is_open: bool:
@@ -30,4 +30,4 @@ func close():
 
 func _on_body_entered(body: Node2D):
 	if body is Player:
-		entered.emit()
+		entered.emit(next_room)

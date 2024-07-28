@@ -1,3 +1,5 @@
+@tool
+
 extends Area2D
 
 class_name TransmutationCircle
@@ -32,22 +34,30 @@ const ModulateModifier := 0.4
 ## Indicated direction of circle fill animation
 var _aborted := false
 
-@export var transmute_property := TransmutableProperties.PropertyName.COLOR
+@export var transmute_property := TransmutableProperties.PropertyName.COLOR:
+	get:
+		return transmute_property
+		
+	set(value):
+		transmute_property = value
+		$Indicator.frame = int(value)
 
 @onready var circle := $Circle
+@onready var indicator := $Indicator
 @onready var smoke := $Smoke
 
 
 func _ready():
 	smoke.animation_finished.connect(smoke.hide)
+	_adjust_modulate(0.2)
 
 
 func _adjust_modulate(value: float):
 	if not self in affected_circles.slice(-2):
-		modulate.a = 1.0 - 2 * ModulateModifier
+		circle.modulate.a = 1.0 - 2 * ModulateModifier
 		return
 		
-	modulate.a = value
+	circle.modulate.a = value
 
 
 func _reset_circle():

@@ -59,6 +59,7 @@ shape = SubResource("SegmentShape2D_binar")
 
 [node name="Door" parent="TileMap" instance=ExtResource("3_lusp1")]
 position = Vector2(277, 87)
+next_room = "res://scenes/shape_change_scene.tscn"
 
 [node name="Square" parent="TileMap" instance=ExtResource("5_vrrr2")]
 position = Vector2(60, 132)

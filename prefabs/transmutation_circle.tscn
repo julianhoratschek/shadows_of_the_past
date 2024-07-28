@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8b32v2hxn41a"]
+[gd_scene load_steps=30 format=3 uid="uid://b8b32v2hxn41a"]
 
 [ext_resource type="Script" path="res://prefabs/transmutation_circle.gd" id="1_tvna6"]
 [ext_resource type="Texture2D" uid="uid://mpi2ncna5r7t" path="res://assets/sprites/transmutation_circle.png" id="1_wt7sm"]
 [ext_resource type="Texture2D" uid="uid://c1bbfaoyv3nay" path="res://assets/sprites/smoke.png" id="3_wawoy"]
+[ext_resource type="Texture2D" uid="uid://bma5wxa5f56oi" path="res://assets/sprites/transmutation_indicators.png" id="4_gueke"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_57uwi"]
 radius = 20.0
@@ -162,8 +163,29 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk34s"]
+atlas = ExtResource("4_gueke")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooqdl"]
+atlas = ExtResource("4_gueke")
+region = Rect2(64, 0, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuc6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk34s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooqdl")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="TransmutationCircle" type="Area2D" groups=["transmutation_circles"]]
-modulate = Color(1, 1, 1, 0.207843)
 script = ExtResource("1_tvna6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -172,6 +194,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_57uwi")
 
 [node name="Circle" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_g8ixj")
 animation = &"idle"
@@ -185,6 +208,11 @@ animation = &"idle"
 autoplay = "idle"
 frame = 7
 frame_progress = 1.0
+
+[node name="Indicator" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 36)
+sprite_frames = SubResource("SpriteFrames_tuc6r")
+animation = &"idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
