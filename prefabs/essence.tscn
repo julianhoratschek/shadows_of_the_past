@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b005ownnfbo7x"]
+
+[ext_resource type="Script" path="res://prefabs/essence.gd" id="1_iwn3j"]
+[ext_resource type="Texture2D" uid="uid://lwgw4dwkpvnu" path="res://assets/sprites/shadow_particle.png" id="1_w6on6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa40t"]
+
+[node name="Essence" type="Area2D"]
+script = ExtResource("1_iwn3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xa40t")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+texture = ExtResource("1_w6on6")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 38.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+linear_accel_min = -10.0
+linear_accel_max = 10.0
+damping_max = 20.0
+scale_amount_max = 4.0
+color = Color(0.184314, 0.184314, 0.184314, 0.34902)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_set_target_position"]

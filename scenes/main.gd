@@ -85,3 +85,9 @@ func do_transition():
 	scene_player = new_player
 	
 	scene_door.entered.connect(scene_fade_out)
+	scene_player.on_winning.connect(_on_player_winning)
+
+
+func _on_player_winning():
+	# scene_fade_out("res://scenes/winning_scene.tscn")
+	print("You won")

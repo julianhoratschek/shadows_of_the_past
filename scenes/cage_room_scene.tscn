@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://75yhg3dnx84b"]
+
+[ext_resource type="Script" path="res://scenes/cage_room_scene.gd" id="1_8mr78"]
+[ext_resource type="TileSet" uid="uid://dnh07qaoym8xq" path="res://scenes/tileset.tres" id="1_ctdwg"]
+[ext_resource type="PackedScene" uid="uid://c2n10dkx4n3vf" path="res://prefabs/player.tscn" id="2_fji08"]
+[ext_resource type="PackedScene" uid="uid://ccqeis0ebvplt" path="res://prefabs/door.tscn" id="3_0thwq"]
+[ext_resource type="PackedScene" uid="uid://b005ownnfbo7x" path="res://prefabs/essence.tscn" id="5_yrvlc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1t46"]
+size = Vector2(145, 145)
+
+[node name="CageRoomScene" type="Node"]
+script = ExtResource("1_8mr78")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(216, 32)
+tile_set = ExtResource("1_ctdwg")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 1, 6, 1, 1342177281, 720896, 1, 1610612737, 720902, 1, 805306369, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 1, 1, 1342177280, 2, 1, 1342177280, 3, 1, 1342177280, 4, 1, 1342177280, 5, 1, 1342177280, 65542, 1, 805306368, 131078, 1, 805306368, 196614, 1, 805306368, 262150, 1, 805306368, 327686, 1, 805306368, 393222, 1, 805306368, 458758, 1, 805306368, 524294, 1, 805306368, 589830, 1, 805306368, 655366, 1, 805306368, 720901, 1, 1610612736, 720900, 1, 1610612736, 720899, 1, 1610612736, 720898, 1, 1610612736, 720897, 1, 1610612736, 65537, 65537, 131072, 65541, 65537, 1342308352, 327685, 65537, 805437440, 327681, 65537, 1610743808, 131073, 65537, 131073, 65539, 65537, 1342308353, 262149, 65537, 805437441, 196609, 65537, 131073, 327682, 65537, 1610743809, 327683, 65537, 1610743809, 65538, 65537, 1342308353, 131077, 65537, 805437441, 196613, 65537, 805437441, 65540, 65537, 1342308353, 327684, 65537, 1610743809, 262145, 65537, 131073)
+
+[node name="Player" parent="TileMap" instance=ExtResource("2_fji08")]
+position = Vector2(113, 353)
+
+[node name="Door" parent="TileMap" instance=ExtResource("3_0thwq")]
+position = Vector2(171, 322)
+next_room = "res://scenes/shape_change_scene.tscn"
+
+[node name="Essence" parent="TileMap" instance=ExtResource("5_yrvlc")]
+position = Vector2(112, 114)
+
+[node name="Area2D" type="Area2D" parent="TileMap"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Area2D"]
+position = Vector2(111.5, 111.5)
+shape = SubResource("RectangleShape2D_i1t46")
+
+[connection signal="body_entered" from="TileMap/Area2D" to="." method="_on_area_2d_body_entered"]

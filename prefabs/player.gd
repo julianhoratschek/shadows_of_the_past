@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 signal transmuted(property_name: TransmutableProperties.PropertyName, old_value, new_value)
+signal on_winning
 
 var speed := 180.0
 
