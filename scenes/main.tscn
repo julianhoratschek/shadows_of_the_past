@@ -1,17 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2fsbfo5hofqj"]
 
-[ext_resource type="Shader" path="res://scenes/scene_transition.gdshader" id="1_d738x"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_o2dvt"]
+[ext_resource type="Shader" path="res://scenes/rect_transition.gdshader" id="2_bxndp"]
 [ext_resource type="PackedScene" uid="uid://chq6iwrtlbxhr" path="res://scenes/shape_change_scene.tscn" id="2_hlw80"]
 [ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="4_thkuk"]
 [ext_resource type="AudioStream" uid="uid://dogmw15rpa05a" path="res://assets/music/shadows_of_the_past_music_01_01.wav" id="5_r3wok"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vkn8k"]
-shader = ExtResource("1_d738x")
-shader_parameter/circle_size = 1.5
-shader_parameter/circle_position = Vector2(0.5, 0.5)
-shader_parameter/screen_width = 640.0
-shader_parameter/screen_height = 480.0
+shader = ExtResource("2_bxndp")
+shader_parameter/a = null
+shader_parameter/phi = null
+shader_parameter/rect_center = null
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_o2dvt")

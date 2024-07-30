@@ -19,10 +19,14 @@ var _background_music_accents := [
 var _transition_direction := TransitionDirection.NONE
 
 ## How big is our circle?
-var _transition_size := 0.0
+var _transition_size := 1.5
+var _transition_phi := 0.0
 
 ## How much do we count to our circle per frame?
+# var _transition_size_change := 1.2
 var _transition_size_change := 1.2
+var _transition_phi_change := 8
+
 
 ## Path to packed scene with next room
 var _room_path := "res://scenes/shape_change_scene.tscn"
@@ -62,8 +66,12 @@ func _process(delta):
 		return
 	
 	# Adjust circle size int the correct direction
+	#_transition_size += delta * _transition_size_change * _transition_direction
+	#transition_rect.material.set_shader_parameter("circle_size", _transition_size)
 	_transition_size += delta * _transition_size_change * _transition_direction
-	transition_rect.material.set_shader_parameter("circle_size", _transition_size)
+	_transition_phi += delta * _transition_phi_change * _transition_direction
+	transition_rect.material.set_shader_parameter("a", _transition_size)
+	transition_rect.material.set_shader_parameter("phi", _transition_phi)
 	
 	# Test if we are done with fading out
 	if (_transition_direction == TransitionDirection.FADE_OUT and _transition_size <= 0.0):
@@ -78,14 +86,17 @@ func _process(delta):
 			scene_fade_in()
 	
 	# If we are not fading out we must be fading in. Test if we are done.
-	elif _transition_size >= 1.5:
+	elif _transition_direction == TransitionDirection.FADE_IN and _transition_size >= 1.5:
 		_transition_direction = TransitionDirection.NONE
 
 
 ## Start fading out targeting the scene door
 func scene_fade_out(next_room_path: String):
 	# Start shader
-	transition_rect.material.set_shader_parameter("circle_position", 
+	#transition_rect.material.set_shader_parameter("circle_position", 
+	#	scene_door.global_position / get_viewport_rect().size)
+	
+	transition_rect.material.set_shader_parameter("rect_center", 
 		scene_door.global_position / get_viewport_rect().size)
 
 	# Set out transition request
