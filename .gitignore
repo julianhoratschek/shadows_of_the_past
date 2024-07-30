@@ -3,3 +3,7 @@
 *.import
 export.zip
 export/
+*.reapeaks
+*.rpp
+assets/sfx/Media/
+assets/sfx/Backups/
