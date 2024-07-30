@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://b8b32v2hxn41a"]
+[gd_scene load_steps=31 format=3 uid="uid://b8b32v2hxn41a"]
 
 [ext_resource type="Script" path="res://prefabs/transmutation_circle.gd" id="1_tvna6"]
 [ext_resource type="Texture2D" uid="uid://mpi2ncna5r7t" path="res://assets/sprites/transmutation_circle.png" id="1_wt7sm"]
 [ext_resource type="Texture2D" uid="uid://c1bbfaoyv3nay" path="res://assets/sprites/smoke.png" id="3_wawoy"]
 [ext_resource type="Texture2D" uid="uid://bma5wxa5f56oi" path="res://assets/sprites/transmutation_indicators.png" id="4_gueke"]
+[ext_resource type="AudioStream" uid="uid://b684l6wid82jp" path="res://assets/sfx/transmutation_puff.wav" id="5_2kwse"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_57uwi"]
 radius = 20.0
@@ -214,6 +215,9 @@ z_index = -1
 position = Vector2(0, 36)
 sprite_frames = SubResource("SpriteFrames_tuc6r")
 animation = &"idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2kwse")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

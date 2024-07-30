@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://ddahx1aw7leij"]
+[gd_scene load_steps=67 format=3 uid="uid://ddahx1aw7leij"]
 
 [ext_resource type="Script" path="res://prefabs/transmutable_properties.gd" id="1_fuc3w"]
 [ext_resource type="Texture2D" uid="uid://dakpse7l5sfvu" path="res://assets/sprites/shape_circle.png" id="2_jg11m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://5wdq7ic85xlp" path="res://assets/sprites/shape_e.png" id="5_3ghv7"]
 [ext_resource type="Texture2D" uid="uid://b3u2porrs55e0" path="res://assets/sprites/shape_r.png" id="7_do7is"]
 [ext_resource type="Texture2D" uid="uid://wdbm7pu7hf4f" path="res://assets/sprites/guard.png" id="7_kax8k"]
+[ext_resource type="AudioStream" uid="uid://d01mrauk4dioq" path="res://assets/sfx/burn_hiss.mp3" id="11_veceg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfvd8"]
 atlas = ExtResource("2_jg11m")
@@ -459,4 +460,7 @@ script = ExtResource("1_fuc3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ph3mf")
-animation = &"fish_idle"
+animation = &"triangle_idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_veceg")

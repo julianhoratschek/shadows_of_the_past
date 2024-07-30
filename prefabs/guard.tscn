@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d35g8f6d7aap0"]
+[gd_scene load_steps=6 format=3 uid="uid://d35g8f6d7aap0"]
 
 [ext_resource type="PackedScene" uid="uid://ddahx1aw7leij" path="res://prefabs/transmutable_properties.tscn" id="1_awrbh"]
 [ext_resource type="Script" path="res://prefabs/guard.gd" id="1_kvquk"]
+[ext_resource type="AudioStream" uid="uid://k2fpuegtwsfo" path="res://assets/sfx/guard_jump.mp3" id="3_wyf8g"]
+[ext_resource type="AudioStream" uid="uid://d2vsdhm7yxnar" path="res://assets/sfx/guard_landing.wav" id="4_4ke4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqknr"]
 size = Vector2(32, 59)
@@ -19,3 +21,9 @@ shape = SubResource("RectangleShape2D_eqknr")
 position = Vector2(0, -39)
 transmute_shape = 7
 no_animation = false
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wyf8g")
+
+[node name="LandingAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4ke4w")

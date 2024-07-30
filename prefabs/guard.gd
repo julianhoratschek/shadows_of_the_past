@@ -18,6 +18,9 @@ func _process(delta: float):
 	if (transmutable_properties.transmute_shape in shape_moving_frames):
 		var frames: Array = shape_moving_frames[transmutable_properties.transmute_shape]
 		if frames[0] <= sprite.frame and sprite.frame <= frames[1]:
+			if sprite.frame == frames[0] and not $JumpAudio.playing:
+				$JumpAudio.pitch_scale = randf_range(0.5, 1.5)
+				$JumpAudio.play()
 			progress += delta_progress * delta
 			
 

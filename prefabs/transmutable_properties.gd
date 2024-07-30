@@ -171,6 +171,7 @@ func change_property(property_name: PropertyName, new_value):
 ## Play desintegration animation
 func desintegrate():
 	modulate = Color.WHITE
+	$AudioStreamPlayer2D.play()
 	$AnimatedSprite2D.play(&"desintegrate")
 	await $AnimatedSprite2D.animation_finished
 	$AnimatedSprite2D.play(&"smoke")

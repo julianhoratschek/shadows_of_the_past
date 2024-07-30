@@ -148,6 +148,7 @@ func _on_circle_animation_finished():
 	# Display smoke effect
 	smoke.show()
 	smoke.play(&"idle")
+	$AudioStreamPlayer2D.play()
 	
 	_reset_circle()
 
