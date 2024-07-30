@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://xmhpflbt3gyl"]
+[gd_scene load_steps=17 format=3 uid="uid://xmhpflbt3gyl"]
 
 [ext_resource type="Script" path="res://prefabs/mouth.gd" id="1_1futi"]
 [ext_resource type="Texture2D" uid="uid://b46mtbvsdjova" path="res://assets/sprites/mouth_with_teeth.png" id="1_w4lht"]
+[ext_resource type="AudioStream" uid="uid://cmfwoyi0s3j8g" path="res://assets/sfx/fed_01.wav" id="3_a0i1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_us7r7"]
 atlas = ExtResource("1_w4lht")
@@ -111,6 +112,9 @@ autoplay = "idle"
 position = Vector2(0, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_als6b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a0i1r")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

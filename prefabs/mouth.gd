@@ -23,6 +23,7 @@ func _on_body_entered(body: Node2D):
 			and child.transmute_shape == TransmutableProperties.TransShape.FISH 
 			and child.transmute_color == expected_color):
 				body.queue_free()
+				$AudioStreamPlayer2D.play()
 				$AnimatedSprite2D.play(&"eat")
 
 

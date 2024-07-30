@@ -15,6 +15,7 @@ func open():
 	if _is_open:
 		return
 
+	$AudioStreamPlayer2D.play()
 	$AnimatedSprite2D.play(&"open")
 	$StaticBody2D.process_mode = Node.PROCESS_MODE_DISABLED
 	_is_open = true

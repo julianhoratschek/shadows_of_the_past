@@ -34,7 +34,7 @@ texture = SubResource("AtlasTexture_a5yj7")
 
 [node name="Label" type="Label" parent="ButtonDisplay"]
 layout_mode = 2
-text = "Transmute"
+text = "(Hold) Transmute"
 
 [node name="ButtonDisplay2" type="HBoxContainer" parent="."]
 layout_mode = 2
