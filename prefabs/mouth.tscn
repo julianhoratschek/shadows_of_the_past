@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://xmhpflbt3gyl"]
+[gd_scene load_steps=31 format=3 uid="uid://xmhpflbt3gyl"]
 
 [ext_resource type="Script" path="res://prefabs/mouth.gd" id="1_1futi"]
 [ext_resource type="Texture2D" uid="uid://b46mtbvsdjova" path="res://assets/sprites/mouth_with_teeth.png" id="1_w4lht"]
 [ext_resource type="AudioStream" uid="uid://cmfwoyi0s3j8g" path="res://assets/sfx/fed_01.wav" id="3_a0i1r"]
+[ext_resource type="Texture2D" uid="uid://74wmbeb5qpwu" path="res://assets/sprites/tongue.png" id="4_kvakm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_us7r7"]
 atlas = ExtResource("1_w4lht")
@@ -98,15 +99,111 @@ animations = [{
 radius = 20.0
 height = 52.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlrv6"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4ss7"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6qfa"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4vbq"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sagnr"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekf1v"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ninmw"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkdyt"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svx78"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyrcn"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3x4f"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k5r8"]
+atlas = ExtResource("4_kvakm")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y5qxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlrv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4ss7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6qfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4vbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sagnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekf1v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ninmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkdyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svx78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyrcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3x4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k5r8")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 12.0
+}]
+
 [node name="Mouth" type="Area2D"]
-modulate = Color(1, 0, 0, 1)
 z_index = -1
 script = ExtResource("1_1futi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_63ug5")
 animation = &"idle"
-autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -115,6 +212,16 @@ shape = SubResource("CapsuleShape2D_als6b")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_a0i1r")
+
+[node name="TongueSprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(84, -17)
+sprite_frames = SubResource("SpriteFrames_y5qxo")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(-84, 17)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

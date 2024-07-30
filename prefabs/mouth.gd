@@ -11,7 +11,7 @@ signal fed()
 
 	set(value):
 		expected_color = value
-		modulate = TransmutableProperties.ColorMap[value]
+		$TongueSprite.modulate = TransmutableProperties.ColorMap[value]
 
 
 func _on_body_entered(body: Node2D):
@@ -24,6 +24,9 @@ func _on_body_entered(body: Node2D):
 			and child.transmute_color == expected_color):
 				body.queue_free()
 				$AudioStreamPlayer2D.play()
+				$TongueSprite.play(&"roll")
+				await $TongueSprite.animation_finished
+				$TongueSprite.hide()
 				$AnimatedSprite2D.play(&"eat")
 
 

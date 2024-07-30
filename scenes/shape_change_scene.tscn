@@ -14,7 +14,7 @@ script = ExtResource("1_fi7ni")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-position = Vector2(180, 30)
+position = Vector2(136, 32)
 tile_set = ExtResource("2_t0n25")
 format = 2
 layer_0/tile_data = PackedInt32Array(4, 1, 196608, 5, 1, 196608, 6, 1, 196608, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 7, 1, 1342177281, 720903, 1, 805306369, 720902, 1, 131072, 720901, 1, 131072, 720900, 1, 131072, 720899, 1, 131072, 720898, 1, 131072, 720897, 1, 131072, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 720896, 1, 131073, 65543, 1, 805306368, 131079, 1, 805306368, 196615, 1, 805306368, 262151, 1, 805306368, 327687, 1, 805306368, 393223, 1, 805306368, 458759, 1, 805306368, 524295, 1, 805306368, 589831, 1, 805306368, 655367, 1, 805306368, 0, 1, 1, 1, 1, 196608, 2, 1, 196608, 3, 1, 196608)
@@ -38,9 +38,9 @@ position = Vector2(76, 257)
 position = Vector2(153, 135)
 
 [node name="ButtonDisplay" parent="." instance=ExtResource("8_aed76")]
-offset_left = 464.0
-offset_top = 177.0
-offset_right = 615.0
-offset_bottom = 286.0
+offset_left = 440.0
+offset_top = 168.0
+offset_right = 604.0
+offset_bottom = 303.0
 
 [connection signal="transmuted" from="TileMap/Player" to="." method="_on_player_transmuted"]

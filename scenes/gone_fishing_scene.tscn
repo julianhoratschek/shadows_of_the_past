@@ -15,7 +15,7 @@ script = ExtResource("1_m1j7s")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-position = Vector2(96, 16)
+position = Vector2(80, 16)
 tile_set = ExtResource("1_3jfuw")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 1, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 589824, 1, 0, 1, 1, 1342177280, 2, 1, 1342177280, 3, 1, 1342177280, 4, 1, 1342177280, 5, 1, 1342177280, 6, 1, 1342177280, 7, 1, 1342177280, 8, 1, 1342177280, 9, 1, 1342177280, 655360, 1, 0, 720896, 1, 0, 786432, 1, 0, 851968, 1, 1610612737, 851978, 1, 805306369, 10, 1, 1342177281, 65546, 1, 805306368, 131082, 1, 805306368, 196618, 1, 805306368, 262154, 1, 805306368, 327690, 1, 805306368, 393226, 1, 805306368, 458762, 1, 805306368, 524298, 1, 805306368, 589834, 1, 805306368, 655370, 1, 805306368, 720906, 1, 805306368, 786442, 1, 805306368, 851977, 1, 1610612736, 851976, 1, 1610612736, 851975, 1, 1610612736, 851974, 1, 1610612736, 851973, 1, 1610612736, 851972, 1, 1610612736, 851971, 1, 1610612736, 851970, 1, 1610612736, 851969, 1, 1610612736)
@@ -31,12 +31,10 @@ position = Vector2(96, 392)
 position = Vector2(72, 280)
 
 [node name="Mouth2" parent="TileMap" instance=ExtResource("4_44dgc")]
-modulate = Color(0, 0, 1, 1)
 position = Vector2(152, 144)
 expected_color = 1
 
 [node name="Mouth3" parent="TileMap" instance=ExtResource("4_44dgc")]
-modulate = Color(0, 0, 1, 1)
 position = Vector2(224, 288)
 expected_color = 1
 
@@ -77,10 +75,10 @@ transmute_color = 1
 transmute_shape = 2
 
 [node name="ButtonDisplay" parent="." instance=ExtResource("8_6vywk")]
-offset_left = 472.0
+offset_left = 456.0
 offset_top = 168.0
-offset_right = 623.0
-offset_bottom = 277.0
+offset_right = 620.0
+offset_bottom = 303.0
 
 [connection signal="fed" from="TileMap/Mouth" to="." method="_on_mouth_fed"]
 [connection signal="fed" from="TileMap/Mouth2" to="." method="_on_mouth_fed"]
