@@ -118,7 +118,8 @@ func _input(event: InputEvent):
 			LabelState.Printing:
 				
 				# Speed up text
-				_print_timer = 0.04
+				# _print_timer = 0.04
+				pass
 				
 			# When we are currently waiting
 			LabelState.Waiting:
@@ -130,11 +131,12 @@ func _input(event: InputEvent):
 				
 				# Set current state
 				_state = LabelState.Printing
+				_print_counter = 0.0
 				
 			LabelState.Done:
 				# TODO to main menu?
 				pass
 	
 	# If we release a key during printing, reset text speed to normal
-	elif event.is_released() and _state == LabelState.Printing:
-		_print_timer = PrintTime
+	# elif event.is_released() and _state == LabelState.Printing:
+	# 	_print_timer = PrintTime

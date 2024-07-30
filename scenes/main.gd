@@ -8,6 +8,13 @@ enum TransitionDirection {
 	FADE_IN = 1
 }
 
+var _background_music_accents := [
+	preload("res://assets/music/shadows_of_the_past_music_02_01.wav"),
+	preload("res://assets/music/shadows_of_the_past_music_02_02.wav"),
+	preload("res://assets/music/shadows_of_the_past_music_02_03.wav"),
+	preload("res://assets/music/shadows_of_the_past_music_02_04.wav"),
+	preload("res://assets/music/shadows_of_the_past_music_02_05.wav")]
+
 ## Current direction of the transition
 var _transition_direction := TransitionDirection.NONE
 
@@ -140,3 +147,13 @@ func do_transition():
 func _on_player_winning():
 	_to_winning_scene = true
 	scene_fade_out("res://scenes/winning_scene.tscn")
+
+
+func _on_background_music_finished():
+	$BackgroundMusic.play()
+
+func _play_background_accent():
+	$BackgroundMusicAccents.stream = _background_music_accents.pick_random()
+	$BackgroundMusicAccents.play()
+	await $BackgroundMusicAccents.finished
+	$BackgroundAccentsTimer.start(randf_range(7.5, 15.7))
