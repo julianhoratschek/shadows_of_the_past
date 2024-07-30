@@ -14,16 +14,22 @@ var is_open: bool:
 func open():
 	if _is_open:
 		return
+	
+	_is_open = true
+	
+	var unlock_sound: AudioStreamPlayer2D = $UnlockAudio
 
-	$AudioStreamPlayer2D.play()
+	unlock_sound.play()
+	await unlock_sound.finished
+	$OpenDoorAudio.play()
 	$AnimatedSprite2D.play(&"open")
 	$StaticBody2D.process_mode = Node.PROCESS_MODE_DISABLED
-	_is_open = true
 
 func close():
 	if not _is_open:
 		return
 
+	$CloseDoor.play()
 	$AnimatedSprite2D.play_backwards(&"open")
 	$StaticBody2D.process_mode = Node.PROCESS_MODE_INHERIT
 	_is_open = false
